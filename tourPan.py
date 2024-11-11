@@ -7,12 +7,18 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 import json
 
+
 class Provincias():
     def __init__(self,nombreProvincia,long,lat,data):
-        self.nombre = nombreProvincia
+        self.nombreProvincia = nombreProvincia
+        self.descripcion = data[f"{nombreProvincia}"]["descripcion"]
         self.long = long
         self.lat = lat
-        self.opsTuristicas = []
+        self.data = data
+        self.opcTuristicas = []
+        #for nombreLugar in data[f"{nombreProvincia}"]["sitios_turisticos"]:
+            #self.opcTuristicas.append(nombreLugar)  
+
  
     ##Genera Marcador en funcion de la latitud y longitud 
     def marcador(self):
@@ -31,14 +37,30 @@ class Provincias():
             background-color: rgba(100, 100, 255, 0.5); 
         }
         """)
+        return marcador
         
-        
+    def loadOptions(self):
+        for nombreLugar,lugar in self.data[f"{self.nombreProvincia}"]["sitios_turisticos"].items():
+            opTuristica = lugarTuristico(nombreLugar,lugar["descripcion"],lugar["comodidades"],lugar["precio"])
+            self.opcTuristicas.append(opTuristica)  
+            
+class lugarTuristico():
+    def __init__(self,nombreLugar,descripcion,comodidades,precio):
+        self.nombreLugar = nombreLugar
+        self.descripcion = descripcion
+        self.comodidades = comodidades
+        self.precio = precio
+                
 #Crea caja para alinear elementos
-def contentBox():#Colocar de para metros el nombre del lugar turistico y la img 
+#Recibe como atributo un objeto de "LugarTuristico"
+def contentBox(lugarTuristico):
     ventanaAux = QWidget()
     contentBox = QVBoxLayout(ventanaAux)
-    label = QLabel("Label")
-    button = QPushButton("Boton")
+    #aqui va el nombre de la opTuristica
+    label = QLabel(lugarTuristico.nombreLugar)
+    button = QPushButton()
+    #aqui se coloca la ruta de la imagen (lugarturistico.img)
+    button.setIcon(QIcon("imgtest.png"))
     
     contentBox.addWidget(label)
     contentBox.addWidget(button)
@@ -67,8 +89,8 @@ def ventanaEmergente(prov):
         }
     """)
     veLayout = QGridLayout()
-    nombreLabel = QLabel(f"{prov.nombreProvincia}")
-    descripLabel = QLabel("{prov.nombreDescrip}")
+    nombreLabel = QLabel(prov.nombreProvincia)
+    descripLabel = QLabel(prov.descripcion)
     
     veLayout.addWidget(nombreLabel,0,0,1,2,alignment=Qt.AlignCenter)
     veLayout.addWidget(descripLabel,1,0,1,2,alignment=Qt.AlignCenter)
@@ -76,7 +98,9 @@ def ventanaEmergente(prov):
     
     for row in range(2):
         for col in range(2):
-            veLayout.addWidget(contentBox(),row+2,col)
+            #pasarle cada opcion turistica almacenada en la lista 
+            opTuristica = prov.opcTuristicas[(2*row)+col]
+            veLayout.addWidget(contentBox(opTuristica),row+2,col)
     
     ventanaEmergente.setLayout(veLayout)
    
@@ -166,33 +190,23 @@ print(f"Pixel en X:{x}----Pixel en Y:{y}")
 #Blink timer
 blinker = True
 
-def blink():
+def blink(marcador):
     global blinker
     if blinker:
         marcador.setStyleSheet()
-
-#creacion de Marcadores
-def marcador(long,lat):
-        x,y = ax.transData.transform((long,lat))
-        marcador = QPushButton("", window)
-        marcador.setFixedSize(100,100)
-        marcador.move(int(x),int(y-445))
-        marcador.setIcon(QIcon("marcador.png"))
-        marcador.setIconSize(marcador.size())
-        marcador.setStyleSheet("""
-        QPushButton {
-            background-color: transparent; 
-            border: none;
-        }
-        QPushButton:hover {
-            background-color: rgba(100, 100, 255, 0.5); 
-        }
-        """)
         
 
+#Creacion de provincias
+panama = Provincias("Panamá",-79.5167,8.9833,"Data")
+#Creacion de lugaresturisticos
+panama.loadOptions()
+#creacion de Marcadores
+marcadortest = panama.marcador()
 
-marcador.clicked.connect(ventanaEmergente)
 
+    
+#
+marcadortest.clicked.connect(lambda:ventanaEmergente(panama))
 window.showFullScreen()
 
 #print(panama.total_bounds)
