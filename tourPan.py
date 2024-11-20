@@ -72,6 +72,8 @@ def contentBox(lugarTuristico):
     ventanaAux = QWidget()
     contentBox = QVBoxLayout(ventanaAux)
     #aqui va el nombre de la opTuristica
+    
+    ########################################################################################################
     label = QLabel(lugarTuristico.nombreLugar)
     button = QPushButton()
     #aqui se coloca la ruta de la imagen (lugarturistico.img)
@@ -110,7 +112,10 @@ def ventanaEmergenteProv(prov):
         }
     """)
     veLayout = QGridLayout()
+    
+    ########################################################################################################
     nombreLabel = QLabel(prov.nombreProvincia)
+    ########################################################################################################
     descripLabel = QLabel(prov.descripcion)
     descripLabel.setWordWrap(True)
     
@@ -123,7 +128,7 @@ def ventanaEmergenteProv(prov):
             opTuristica = prov.opcTuristicas[(2*row)+col]
             veLayout.addWidget(contentBox(opTuristica),row+2,col)
             
-    
+    ########################################################################################################
     buttonClose = QPushButton("Close")
     veLayout.addWidget(buttonClose,4,0)
     
@@ -155,9 +160,12 @@ def ventanaEmergenteLugar(lugar):
         }
     """)
     veLayout = QGridLayout()
+    ########################################################################################################
     nombreLabel = QLabel(lugar.nombreLugar)
+    ########################################################################################################
     descripLabel = QLabel(lugar.descripcion)
     descripLabel.setWordWrap(True)
+    ########################################################################################################
     serviciosLabel = QLabel(f"Servicios Incluidos:\n{lugar.servicios}")
     serviciosLabel.setWordWrap(True)
     precioLabel = QLabel(f"Precio: ${lugar.precio}")
@@ -166,7 +174,9 @@ def ventanaEmergenteLugar(lugar):
     img = img.lower()
     imgLabel.setPixmap(QPixmap(f"Files/sitiosTuristicos/{img}"))
     imgLabel.setFixedSize(500,500)
+    ########################################################################################################
     buttonClose = QPushButton("Close")
+    ########################################################################################################
     buttonReserva = QPushButton("Reserva")
     buttonReserva.clicked.connect(lambda: Reserva.show())
 
