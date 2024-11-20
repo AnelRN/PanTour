@@ -1,11 +1,15 @@
+#
+from reserva import Ui_MainWindow
 #Libreria Grafica
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon,QPixmap
 from PyQt5.QtCore import QTimer,Qt, QSize
+
 #Libreria para Mapas
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import json
+
 
 class Provincias():
     def __init__(self,nombreProvincia,long,lat,data):
@@ -161,9 +165,11 @@ def ventanaEmergenteLugar(lugar):
     img = f"{lugar.nombreLugar}.jpg"
     img = img.lower()
     imgLabel.setPixmap(QPixmap(f"Files/sitiosTuristicos/{img}"))
+    imgLabel.setFixedSize(500,500)
     buttonClose = QPushButton("Close")
     buttonReserva = QPushButton("Reserva")
-    
+    buttonReserva.clicked.connect(lambda: Reserva.show())
+
     
     veLayout.addWidget(nombreLabel,0,0,1,2,alignment=Qt.AlignCenter)
     veLayout.addWidget(descripLabel,1,0,1,2,alignment=Qt.AlignCenter)
@@ -183,10 +189,8 @@ def ventanaEmergenteLugar(lugar):
    
     ventanaEmergente.exec_()
     
-    
-    
-    
-    
+
+
 #Crea los objetos para cada provincia y carga sus metodos
 def loadProvs():
     for clave,provincia in provsData.items():
@@ -196,9 +200,6 @@ def loadProvs():
         provs.append(prov)
         marcadoresProv.append(marcador)
         
-
-     
-
 
 #Cargar info de provs
 with open('Files/ProvinciasData2.0.json', 'r' , encoding = 'utf-8') as provfile:
@@ -247,7 +248,6 @@ plt.savefig('mapaPan.png')
 plt.close(fig)
 
 
-
 #Crear label con Mapa
 labelPan = QLabel(window)
 imgPan = QPixmap('mapaPan')
@@ -279,8 +279,7 @@ print(f"Tamano Label{xLabel,yLable}")
 
 #Sumar los 4 decimales que le siguen para obtener valor real(mmmh todavia falta revisar)
 
-#Blink timer
-blinker = True
+
 
 
         
@@ -289,18 +288,17 @@ blinker = True
         
 provs = []       
 marcadoresProv = []
-        
+
 loadProvs()
 
 #print(provs)
 #print(marcadoresProv)
-
-
+Reserva =QMainWindow()
+ui = Ui_MainWindow()
+ui.setupUi(Reserva)
 
 window.showFullScreen()
 
 
 tourPan.exec_()
-
-
 
