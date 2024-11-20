@@ -1,12 +1,11 @@
 #Libreria Grafica
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon,QPixmap
-from PyQt5.QtCore import QTimer,Qt
+from PyQt5.QtCore import QTimer,Qt, QSize
 #Libreria para Mapas
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import json
-
 
 class Provincias():
     def __init__(self,nombreProvincia,long,lat,data):
@@ -22,45 +21,63 @@ class Provincias():
  
     ##Genera Marcador en funcion de la latitud y longitud 
     def marcador(self):
-        x,y = ax.transData.transform((self.long,self.lat))
-        marcador = QPushButton("", window)
-        marcador.setFixedSize(100,100)
-        marcador.move(int(x),int(y-445))
+        # Transformar coordenadas geográficas a píxeles
+        x, y = ax.transData.transform((self.long, self.lat))
+    
+        # Invertir el eje Y
+        y = labelPan.height() - int(y)  # Reflejar las coordenadas en el eje Y
+        y -= 80 #Correccion de error
+
+        # Redondear X e Y para que sean enteros
+        x = int(x)
+
+        marcador = QPushButton(f"{self.nombreProvincia}", window)
+        marcador.move(x, y)  # Usar las coordenadas ajustadas
         marcador.setIcon(QIcon("marcador.png"))
-        marcador.setIconSize(marcador.size())
+        marcador.setIconSize(QSize(100,100))
         marcador.setStyleSheet("""
         QPushButton {
             background-color: transparent; 
             border: none;
+            
+            color: black; 
         }
         QPushButton:hover {
             background-color: rgba(100, 100, 255, 0.5); 
-        }
+          }
         """)
+        marcador.clicked.connect(lambda: ventanaEmergenteProv(self))
         return marcador
+
         
     def loadOptions(self):
-        for nombreLugar,lugar in self.data[f"{self.nombreProvincia}"]["sitios_turisticos"].items():
-            opTuristica = lugarTuristico(nombreLugar,lugar["descripcion"],lugar["comodidades"],lugar["precio"])
+        for nombreLugar,lugar in self.data[f"{self.nombreProvincia}"]["lugares_turisticos"].items():
+            opTuristica = lugarTuristico(nombreLugar,lugar["descripcion"],lugar["servicios_incluidos"],lugar["precio"])
             self.opcTuristicas.append(opTuristica)  
             
 class lugarTuristico():
-    def __init__(self,nombreLugar,descripcion,comodidades,precio):
+    def __init__(self,nombreLugar,descripcion,servicios,precio):
         self.nombreLugar = nombreLugar
         self.descripcion = descripcion
-        self.comodidades = comodidades
+        self.servicios = servicios
         self.precio = precio
                 
 #Crea caja para alinear elementos
 #Recibe como atributo un objeto de "LugarTuristico"
-def contentBox(lugarTuristico):
+def contentBox(lugarTuristico):    
     ventanaAux = QWidget()
     contentBox = QVBoxLayout(ventanaAux)
     #aqui va el nombre de la opTuristica
     label = QLabel(lugarTuristico.nombreLugar)
     button = QPushButton()
     #aqui se coloca la ruta de la imagen (lugarturistico.img)
-    button.setIcon(QIcon("imgtest.png"))
+    img = f"{lugarTuristico.nombreLugar}.jpg"
+    img = img.lower()
+    #print(img)
+    button.setIcon(QIcon(f"Files/sitiosTuristicos/{img}"))
+    button.setIconSize(QSize(500,500))
+    button.clicked.connect(lambda: ventanaEmergenteLugar(lugarTuristico))
+    
     
     contentBox.addWidget(label)
     contentBox.addWidget(button)
@@ -69,7 +86,7 @@ def contentBox(lugarTuristico):
     
     
 #Ventana emergente para mostrar informacion de provincia y sus sitios turisticos
-def ventanaEmergente(prov):
+def ventanaEmergenteProv(prov):
     
     sizex = window.width()//2
     sizey = window.height()//2 + int((window.height()//2)*0.35)
@@ -91,25 +108,100 @@ def ventanaEmergente(prov):
     veLayout = QGridLayout()
     nombreLabel = QLabel(prov.nombreProvincia)
     descripLabel = QLabel(prov.descripcion)
+    descripLabel.setWordWrap(True)
     
     veLayout.addWidget(nombreLabel,0,0,1,2,alignment=Qt.AlignCenter)
     veLayout.addWidget(descripLabel,1,0,1,2,alignment=Qt.AlignCenter)
   
-    
     for row in range(2):
         for col in range(2):
             #pasarle cada opcion turistica almacenada en la lista 
             opTuristica = prov.opcTuristicas[(2*row)+col]
             veLayout.addWidget(contentBox(opTuristica),row+2,col)
+            
+    
+    buttonClose = QPushButton("Close")
+    veLayout.addWidget(buttonClose,4,0)
+    
+    
+    buttonClose.clicked.connect(ventanaEmergente.close)
+    
     
     ventanaEmergente.setLayout(veLayout)
    
     ventanaEmergente.exec_()
     
+    
+def ventanaEmergenteLugar(lugar):
+    sizex = window.width()//2
+    sizey = window.height()//2 + int((window.height()//2)*0.35)
+    
+    x = window.x() +(window.width() - sizex)//2
+    y = window.y() + (window.height() - sizey)//2
+    
+    
+    ventanaEmergente = QDialog(window)
+    ventanaEmergente.setGeometry(x, y, sizex, sizey)
+    ventanaEmergente.setWindowFlags(Qt.FramelessWindowHint)
+    ventanaEmergente.setStyleSheet("""
+        QDialog {
+            background-color: #ffffff;  
+            border-radius: 12px;  
+            border: 3px solid #000000;
+        }
+    """)
+    veLayout = QGridLayout()
+    nombreLabel = QLabel(lugar.nombreLugar)
+    descripLabel = QLabel(lugar.descripcion)
+    descripLabel.setWordWrap(True)
+    serviciosLabel = QLabel(f"Servicios Incluidos:\n{lugar.servicios}")
+    serviciosLabel.setWordWrap(True)
+    precioLabel = QLabel(f"Precio: ${lugar.precio}")
+    imgLabel = QLabel()
+    img = f"{lugar.nombreLugar}.jpg"
+    img = img.lower()
+    imgLabel.setPixmap(QPixmap(f"Files/sitiosTuristicos/{img}"))
+    buttonClose = QPushButton("Close")
+    buttonReserva = QPushButton("Reserva")
+    
+    
+    veLayout.addWidget(nombreLabel,0,0,1,2,alignment=Qt.AlignCenter)
+    veLayout.addWidget(descripLabel,1,0,1,2,alignment=Qt.AlignCenter)
+    veLayout.addWidget(serviciosLabel,2,0,alignment=Qt.AlignCenter)
+    veLayout.addWidget(imgLabel,2,1,alignment=Qt.AlignCenter)
+    veLayout.addWidget(precioLabel,3,0,alignment=Qt.AlignCenter)
+    
+    veLayout.addWidget(buttonClose,4,0)
+    veLayout.addWidget(buttonReserva,4,1)
+
+    
+    
+    buttonClose.clicked.connect(ventanaEmergente.close)
+    
+    
+    ventanaEmergente.setLayout(veLayout)
+   
+    ventanaEmergente.exec_()
+    
+    
+    
+    
+    
+#Crea los objetos para cada provincia y carga sus metodos
+def loadProvs():
+    for clave,provincia in provsData.items():
+        prov = Provincias(clave,provincia["long"],provincia["lat"],provsData)
+        marcador = prov.marcador()
+        prov.loadOptions()
+        provs.append(prov)
+        marcadoresProv.append(marcador)
+        
+
+     
 
 
 #Cargar info de provs
-with open('ProvinciasTest.json', 'r' , encoding = 'utf-8') as provfile:
+with open('Files/ProvinciasData2.0.json', 'r' , encoding = 'utf-8') as provfile:
     provsData = json.load(provfile)
 
 #Genera la Ventana Principal
@@ -149,7 +241,7 @@ fig, ax = plt.subplots(figsize=(xInch,yInch))
 panama.plot(ax=ax, color='lightblue', edgecolor='black')
 
 #Esconde los ejes
-#plt.axis('off')
+plt.axis('off')
 #Convierte el Mapa a Imagen
 plt.savefig('mapaPan.png')
 plt.close(fig)
@@ -174,11 +266,11 @@ print(f"Tamano Label{xLabel,yLable}")
 #Se verifica el flujo final de la generacion de mapa, para ver si concuerda con la resolucion de la pantalla
 
 #Conversion de cordenadas a pixeles
-x,y = ax.transData.transform((-79.5167,8.9833))
+#x,y = ax.transData.transform((-79.5167,8.9833))
 #Podemos hacer esto, ya que, como generamos el mapa en funcion de a resolucion de la pantalla
 #la conversion va a ser de 1:1
 
-print(f"Pixel en X:{x}----Pixel en Y:{y}")
+#print(f"Pixel en X:{x}----Pixel en Y:{y}")
 #Traqueamos los datos
 #Lastimosamente
 #Existe error de conversion :/, se contrarrestra con una constante(400)
@@ -190,27 +282,25 @@ print(f"Pixel en X:{x}----Pixel en Y:{y}")
 #Blink timer
 blinker = True
 
-def blink(marcador):
-    global blinker
-    if blinker:
-        marcador.setStyleSheet()
+
+        
         
 
-#Creacion de provincias
-panama = Provincias("Panamá",-79.5167,8.9833,"Data")
-#Creacion de lugaresturisticos
-panama.loadOptions()
-#creacion de Marcadores
-marcadortest = panama.marcador()
+        
+provs = []       
+marcadoresProv = []
+        
+loadProvs()
+
+#print(provs)
+#print(marcadoresProv)
 
 
-    
-#
-marcadortest.clicked.connect(lambda:ventanaEmergente(panama))
+
 window.showFullScreen()
 
-#print(panama.total_bounds)
 
 tourPan.exec_()
+
 
 

@@ -138,8 +138,8 @@ def ventanaEmergente(prov):
 
 
 #Cargar info de provs
-with open('ProvinciasTest.json', 'r' , encoding = 'utf-8') as provfile:
-    provsData = json.load(provfile)
+#with open('ProvinciasTest.json', 'r' , encoding = 'utf-8') as provfile:
+    #provsData = json.load(provfile)
 
 #Genera la Ventana Principal
 tourPan = QApplication([])
@@ -190,7 +190,7 @@ labelPan = QLabel(window)
 imgPan = QPixmap('mapaPan')
 labelPan.setPixmap(imgPan)
 #Ajusta el tamano del label al del Mapa
-labelPan.adjustSize()
+labelPan.resize(imgPan.width(), imgPan.height())
 
 
 #Obtiene el tamano del label
@@ -216,17 +216,14 @@ print(f"Tamano Label{xLabel,yLable}")
 
 #Sumar los 4 decimales que le siguen para obtener valor real(mmmh todavia falta revisar)
 
-#Blink timer
-blinker = True
 
 
 
         
-panama = Provincias("Panamá",-79.5167,8.9833,dataTest)
-marcadortest = panama.marcador()
-panama.loadOptions()
-
-marcadortest.clicked.connect(lambda:ventanaEmergente(panama))
+#panama = Provincias("Panamá",-79.5167,8.9833,dataTest)
+#marcadortest = panama.marcador()
+#panama.loadOptions()
+#marcadortest.clicked.connect(lambda:ventanaEmergente(panama))
 
 window.showFullScreen()
 
