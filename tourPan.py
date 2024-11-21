@@ -2,7 +2,7 @@
 from reserva import Ui_MainWindow
 #Libreria Grafica
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon,QPixmap
+from PyQt5.QtGui import QIcon,QPixmap,QFont
 from PyQt5.QtCore import QTimer,Qt, QSize, QRect
 
 #Libreria para Mapas
@@ -18,7 +18,7 @@ global subTotal
 
 global totalPersonas
 
-
+font = QFont("Comic Sans MS", 12)
 
 
 
@@ -95,6 +95,7 @@ def contentBox(lugarTuristico):
     
     ########################################################################################################
     label = QLabel(lugarTuristico.nombreLugar)
+    label.setFont(font)
     button = QPushButton()
 
     #aqui se coloca la ruta de la imagen (lugarturistico.img)
@@ -144,8 +145,10 @@ def ventanaEmergenteProv(prov):
     
     ########################################################################################################
     nombreLabel = QLabel(prov.nombreProvincia)
+    nombreLabel.setFont(font)
     ########################################################################################################
     descripLabel = QLabel(prov.descripcion)
+    descripLabel.setFont(font)
     descripLabel.setWordWrap(True)
     
     veLayout.addWidget(nombreLabel,0,0,1,2,alignment=Qt.AlignCenter)
@@ -200,13 +203,17 @@ def ventanaEmergenteLugar(lugar, nombreLugar, precioLugar):
     veLayout = QGridLayout()
     ########################################################################################################
     nombreLabel = QLabel(lugar.nombreLugar)
+    nombreLabel.setFont(font)
     ########################################################################################################
     descripLabel = QLabel(lugar.descripcion)
     descripLabel.setWordWrap(True)
+    descripLabel.setFont(font)
     ########################################################################################################
     serviciosLabel = QLabel(f"Servicios Incluidos:\n{lugar.servicios}")
     serviciosLabel.setWordWrap(True)
+    serviciosLabel.setFont(font)
     precioLabel = QLabel(f"Precio: ${lugar.precio}")
+    precioLabel.setFont(font)
     imgLabel = QLabel()
     img = f"{lugar.nombreLugar}.jpg"
     img = img.lower()
@@ -340,6 +347,9 @@ provs = []
 marcadoresProv = []
 
 loadProvs()
+tituloLabel =  QLabel("TOURPAN")
+tituloLabel.setFont(font)
+
 
 #print(provs)
 #print(marcadoresProv)

@@ -342,7 +342,7 @@ class Ui_MainWindow(object):
         self.mailfac.setText(_translate("MainWindow", "E-mail:"))
         self.cantpersonfac.setText(_translate("MainWindow", "Cantidad de Personas:"))
         self.totaladeudado.setText(_translate("MainWindow", "Total :"))
-        self.btnreservar.setText(_translate("MainWindow", "reservar"))
+        self.btnreservar.setText(_translate("MainWindow", "pagar"))
         self.btnregresar.setText(_translate("MainWindow", "regresar"))
         
 
