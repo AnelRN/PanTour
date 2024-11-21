@@ -3,15 +3,35 @@ from reserva import Ui_MainWindow
 #Libreria Grafica
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon,QPixmap
-from PyQt5.QtCore import QTimer,Qt, QSize
+from PyQt5.QtCore import QTimer,Qt, QSize, QRect
 
 #Libreria para Mapas
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import json
 
+global name #CAMBIO STEVEN: VARIABLE GLOBAL PARA EL NOMBRE DE LA ATRACCION TURISTICA EN CADA RESERVA
+
+global precio #CAMBIO STEVEN: VARIABLE GLOBAL PARA EL PRECIO DE LA ATRACCION TURISTICA EN CADA RESERVA
+
+global subTotal
+
+global totalPersonas
+
+
+
+
 
 class Provincias():
+
+    global subTotal
+    subTotal = 0
+    
+
+    global totalPersonas
+    totalPersonas = 0
+
+
     def __init__(self,nombreProvincia,long,lat,data):
         self.nombreProvincia = nombreProvincia
         self.descripcion = data[f"{nombreProvincia}"]["descripcion"]
@@ -76,13 +96,22 @@ def contentBox(lugarTuristico):
     ########################################################################################################
     label = QLabel(lugarTuristico.nombreLugar)
     button = QPushButton()
+
     #aqui se coloca la ruta de la imagen (lugarturistico.img)
     img = f"{lugarTuristico.nombreLugar}.jpg"
     img = img.lower()
     #print(img)
     button.setIcon(QIcon(f"Files/sitiosTuristicos/{img}"))
     button.setIconSize(QSize(500,500))
-    button.clicked.connect(lambda: ventanaEmergenteLugar(lugarTuristico))
+
+
+    pantallaReserva.nombreSitio.setText("")
+    pantallaReserva.precioSitio.setText("")
+    pantallaReserva.cantperso.setValue(0)
+
+    ##CAMBIO STEVEN: AGREGUE UN ATRIBUTO PARA LA VARIABLE GLOBAL
+
+    button.clicked.connect(lambda: ventanaEmergenteLugar(lugarTuristico, lugarTuristico.nombreLugar, lugarTuristico.precio))
     
     
     contentBox.addWidget(label)
@@ -141,7 +170,16 @@ def ventanaEmergenteProv(prov):
     ventanaEmergente.exec_()
     
     
-def ventanaEmergenteLugar(lugar):
+def ventanaEmergenteLugar(lugar, nombreLugar, precioLugar):
+    
+    global name #CAMBIO STEVEN VAR GLOBAL
+    global precio
+
+    name = nombreLugar #CAMBIO STEVEN, VARIABLE GLOBAL ASIGNADA CON EL NOMBRE DE LA ATRACCION DEPENDIENDO DEL MARCADOR
+
+    precio = precioLugar #CAMBIO STEVEN, VARIABLE GLOBAL ASIGNADA CON EL NOMBRE DE LA ATRACCION DEPENDIENDO DEL MARCADOR
+
+
     sizex = window.width()//2
     sizey = window.height()//2 + int((window.height()//2)*0.35)
     
@@ -178,7 +216,9 @@ def ventanaEmergenteLugar(lugar):
     buttonClose = QPushButton("Close")
     ########################################################################################################
     buttonReserva = QPushButton("Reserva")
-    buttonReserva.clicked.connect(lambda: Reserva.show())
+
+    
+    buttonReserva.clicked.connect(lambda: mostrarReserva(pantallaReserva)) ####
 
     
     veLayout.addWidget(nombreLabel,0,0,1,2,alignment=Qt.AlignCenter)
@@ -304,8 +344,315 @@ loadProvs()
 #print(provs)
 #print(marcadoresProv)
 Reserva =QMainWindow()
-ui = Ui_MainWindow()
-ui.setupUi(Reserva)
+pantallaReserva = Ui_MainWindow()
+pantallaReserva.setupUi(Reserva)
+
+pantallaReserva.precioSitio = QLabel(pantallaReserva.centralwidget)
+pantallaReserva.precioSitio.setGeometry(QRect(423, 72, 300, 30))
+
+pantallaReserva.nombreSitio = QLabel(pantallaReserva.centralwidget)
+pantallaReserva.nombreSitio.setGeometry(QRect(420, 34, 300, 30))
+
+pantallaReserva.subTotalLabel = QLabel(pantallaReserva.centralwidget)
+pantallaReserva.subTotalLabel.setGeometry(QRect(450, 123,300 , 30))
+
+pantallaReserva.inputTotalAdeudado = QLabel(pantallaReserva.groupBox_3)
+pantallaReserva.inputTotalAdeudado.setGeometry(QRect(100, 260, 200, 16))
+pantallaReserva.inputTotalAdeudado.setObjectName("totaladeudado")
+
+
+pantallaReserva.descuentoTotal = QLabel(pantallaReserva.groupBox_2)
+pantallaReserva.descuentoTotal.setGeometry(QRect(70, 80, 71, 21))
+pantallaReserva.descuentoTotal.setObjectName("descuento")
+
+
+pantallaReserva.subTotalLabel.setText("")
+
+
+
+
+#CODE STEVEN:
+
+
+#######################################################
+
+
+#EVENTOS DE LA PANTALLA DE RESERVA:
+
+pantallaReserva.btnregresar.clicked.connect(lambda:ocultarVentanaReserva(pantallaReserva))
+pantallaReserva.btnabonar.clicked.connect(lambda: check_radio(pantallaReserva))
+
+pantallaReserva.btnreservar.clicked.connect(lambda: completarReserva())
+
+pantallaReserva.intronom.textChanged.connect(lambda: validar_nombre(pantallaReserva))
+pantallaReserva.introcedula.textChanged.connect(lambda: validar_cedula(pantallaReserva))
+pantallaReserva.intrnumtelefono.textChanged.connect(lambda: validar_telefono(pantallaReserva))
+pantallaReserva.introedad.textChanged.connect(lambda: validar_edad(pantallaReserva))
+pantallaReserva.intromail.textChanged.connect(lambda: validar_email(pantallaReserva))
+pantallaReserva.intropais.textChanged.connect(lambda: validar_pais(pantallaReserva))
+pantallaReserva.cantperso.valueChanged.connect(lambda: validar_cantidad_personas(pantallaReserva))
+
+pantallaReserva.btnAgregarReserva.clicked.connect(lambda: validarDatos(pantallaReserva))
+
+pantallaReserva.btnabonar.clicked.connect(lambda: validarAbono())
+
+#pantallaReserva.input_abono.textChanged.connect(lambda: validarAbono())
+
+
+
+ 
+
+# METODOS DE LA VENTANA RESERVA 
+
+def validarAbono():
+    
+    global subTotal
+
+    subTotal-=int(pantallaReserva.input_abono.text())
+
+    '''if int(pantallaReserva.input_abono.text()) > subTotal:
+            
+            pantallaReserva.introduzAbono.setText("*Ingrese su nombre*")
+            pantallaReserva.introduzAbono.setStyleSheet("color: red")
+            error = True'''
+
+def completarReserva():
+
+    global subTotal
+    global totalPersonas  
+    descuentoTotal = 0
+
+    flag = 0
+    flag = subTotal
+
+
+    if(subTotal>2000):
+        subTotal-=flag*0.05
+        descuentoTotal+=5
+
+    if(int(pantallaReserva.introedad.text()) >=  60):
+        subTotal-=flag*0.1
+        descuentoTotal+=10
+    
+    if(totalPersonas >= 3):
+        subTotal-=flag*0.15
+        descuentoTotal+=15
+
+     # Limpiar los campos si es necesario
+
+    '''pantallaReserva.intronom.setText("")
+    pantallaReserva.introcedula.setText("")
+    pantallaReserva.intrnumtelefono.setText("")
+    pantallaReserva.introedad.setText("")
+    pantallaReserva.intropais.setText("")
+    pantallaReserva.intromail.setText("")
+    pantallaReserva.cantperso.setValue(0)'''
+    
+    #validarAbono()
+
+    pantallaReserva.inputTotalAdeudado.setText(f"${subTotal}")
+
+    subTotal = 0
+    totalPersonas = 0
+
+    
+
+    pantallaReserva.descuentoTotal.setText(f": {descuentoTotal}%")
+ 
+
+def mostrarReserva(self):
+        
+        Reserva.show()
+        self.nombreSitio.setText(name)
+        self.precioSitio.setText(precio)
+
+def ocultarVentanaReserva(self):
+
+    self.cantperso.setValue(0)
+   
+    Reserva.hide()
+
+
+def validarDatos(self):
+
+        error = False
+
+        if len(self.intronom.text()) == 0:
+            
+            self.introduzcanom.setText("*Ingrese su nombre*")
+            self.introduzcanom.setStyleSheet("color: red")
+            error = True
+       
+        if len(self.introcedula.text()) == 0:
+            self.introduzcacedula.setText("*Ingrese su cédula*")
+            self.introduzcacedula.setStyleSheet("color: red")
+            error = True
+        if len(self.intrnumtelefono.text()) == 0:
+            self.introduzcatelefono.setText("*Ingrese su teléfono*")
+            self.introduzcatelefono.setStyleSheet("color: red")
+            error = True
+        if len(self.introedad.text()) == 0:
+            self.introduzcaedad.setText("*Ingrese su edad*")
+            self.introduzcaedad.setStyleSheet("color: red")
+            error = True
+        if len(self.intropais.text()) == 0:
+            self.introduzcapais.setText("*Ingrese su país*")
+            self.introduzcapais.setStyleSheet("color: red")
+            error = True
+        if len(self.intromail.text()) == 0:
+            self.introduzcaEmail.setText("*Ingrese su email*")
+            self.introduzcaEmail.setStyleSheet("color: red")
+            error = True
+        if self.cantperso.value() == 0:
+            self.introduzcacantperson.setText("*Ingrese personas*")
+            self.introduzcacantperson.setStyleSheet("color: red")
+            
+            error = True
+
+        if error:
+            print("Hay campos que no se han llenado correctamente.")
+        else:
+        # Aquí puedes guardar los datos o realizar otras acciones
+            print("Datos guardados correctamente")
+            global totalPersonas
+            totalPersonas += self.cantperso.value()
+            agregarSubTotal(pantallaReserva)
+            
+
+def CrearReservar(self):
+        global totalPersonas
+    # Obtener los datos de los campos
+        self.nombre = self.intronom.text()  # Usamos .text() para obtener el valor del campo
+        self.cedula = self.introcedula.text()  # Lo mismo aquí
+        self.telefono = self.intrnumtelefono.text()  
+        self.sexo = self.escsexo.currentText()  # Usamos currentText() para obtener el valor seleccionado
+        self.edad = self.introedad.text()
+        self.pais = self.intropais.text()
+        self.Email = self.intromail.text()
+        self.CantidadPersonas = totalPersonas  # Para QSpinBox usamos .value() en lugar de .text()
+
+    # Validación de los campos
+        
+        pantallaReserva.cantperso.setValue(0)
+
+        self.nomfac.setText(f"Nombre: {self.nombre}")
+        self.cedulafac.setText(f"Cédula: {self.cedula}")
+        self.telefonofac.setText(f"Teléfono: {self.telefono}")
+        self.sexofac.setText(f"Sexo: {self.sexo}")
+        self.edadfac.setText(f"Edad: {self.edad}")
+        self.paisfac.setText(f"País: {self.pais}")
+        self.mailfac.setText(f"E-mail: {self.Email}")
+        self.cantpersonfac.setText(f"Cantidad de personas: {self.CantidadPersonas}")
+
+    # Limpiar los campos si es necesario
+        '''self.intronom.setText("")
+        self.introcedula.setText("")
+        self.intrnumtelefono.setText("")
+        self.introedad.setText("")
+        self.intropais.setText("")
+        self.intromail.setText("")
+        self.cantperso.setValue(0)'''
+
+def agregarSubTotal(self):
+
+    global subTotal
+    
+
+    
+    subTotal += float(precio)*self.cantperso.value() 
+    self.subTotalLabel.setText(f'${str(subTotal)}')
+
+    CrearReservar(pantallaReserva)
+
+
+    subTotal = float(subTotal)
+
+
+
+def check_radio(self):
+        try:
+            if self.radioButton.isChecked():
+                print('Usted ha realizado el abono')
+            else:
+                print('No seleccionó la opción abonar')
+        except Exception as e:
+            print(f"Error en check_radio: {e}")
+
+
+# Crear las funciones de validación para cada campo
+def validar_nombre(self):
+    try:
+        nombre = self.intronom.text()
+        if len(nombre) > 0:  # Si el campo no está vacío
+            self.introduzcanom.setText("")
+            self.introduzcanom.setStyleSheet("")
+
+    except Exception as e:
+        print(f"Error en validar_nombre: {e}")
+
+def validar_cedula(self):
+    try:
+        cedula = self.introcedula.text()
+        if len(cedula) > 0:  # Si el campo no está vacío
+            self.introduzcacedula.setText("")
+            self.introduzcacedula.setStyleSheet("")
+
+    except Exception as e:
+        print(f"Error en validar_cedula: {e}")
+
+def validar_telefono(self):
+    try:
+        telefono = self.intrnumtelefono.text()
+        if len(telefono) > 0:  # Si el campo no está vacío
+            self.introduzcatelefono.setText("")
+            self.introduzcatelefono.setStyleSheet("")
+
+    except Exception as e:
+        print(f"Error en validar_telefono: {e}")
+
+def validar_edad(self):
+    try:
+        edad = self.introedad.text()
+        if len(edad) > 0:  # Si el campo no está vacío
+            self.introduzcaedad.setText("")
+            self.introduzcaedad.setStyleSheet("")
+
+    except Exception as e:
+        print(f"Error en validar_edad: {e}")
+
+def validar_email(self):
+    try:
+        email = self.intromail.text()
+        if len(email) > 0:  # Si el campo no está vacío
+            self.introduzcaEmail.setText("")
+            self.introduzcaEmail.setStyleSheet("")
+
+    except Exception as e:
+        print(f"Error en validar_email: {e}")
+
+def validar_pais(self):
+    try:
+        pais = self.intropais.text()
+        if len(pais) > 0:  # Si el campo no está vacío
+            self.introduzcapais.setText("")
+            self.introduzcapais.setStyleSheet("")
+
+    except Exception as e:
+        print(f"Error en validar_pais: {e}")
+
+def validar_cantidad_personas(self):
+    try:
+        if self.cantperso.value() > 0:  # Si la cantidad es válida
+            self.introduzcacantperson.setText("")
+            self.introduzcacantperson.setStyleSheet("")
+        
+    except Exception as e:
+        print(f"Error en validar_cantidad_personas: {e}")
+
+
+###########################################################
+
+
 
 window.showFullScreen()
 

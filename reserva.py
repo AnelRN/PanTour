@@ -1,10 +1,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from PyQt5.QtCore import QTimer
+import sys
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 800)
+
+        MainWindow.setMinimumSize(QtCore.QSize(850, 600))
+        MainWindow.setMaximumSize(QtCore.QSize(850, 600))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
@@ -107,7 +113,7 @@ class Ui_MainWindow(object):
         self.radioButton.setGeometry(QtCore.QRect(20, 370, 95, 20))
         self.radioButton.setObjectName("radioButton")
         self.btnabonar = QtWidgets.QPushButton(self.groupBox)
-        self.btnabonar.setGeometry(QtCore.QRect(20, 400, 93, 28))
+        self.btnabonar.setGeometry(QtCore.QRect(190, 400, 93, 28))
         self.btnabonar.setObjectName("btnabonar")
         self.sexo = QtWidgets.QLabel(self.groupBox)
         self.sexo.setGeometry(QtCore.QRect(200, 270, 55, 16))
@@ -195,17 +201,36 @@ class Ui_MainWindow(object):
         self.abono = QtWidgets.QLabel(self.groupBox_3)
         self.abono.setGeometry(QtCore.QRect(10, 220, 200, 20))
         self.abono.setObjectName("abono")
+
+
+
+        self.introduzAbono = QtWidgets.QLabel(self.groupBox)
+        self.introduzAbono.setGeometry(QtCore.QRect(20, 500, 150, 28))
+        self.introduzAbono.setText("")
+        self.introduzAbono.setObjectName("introduzAbono")
+
+
         self.totaladeudado = QtWidgets.QLabel(self.groupBox_3)
         self.totaladeudado.setGeometry(QtCore.QRect(10, 260, 200, 16))
         self.totaladeudado.setObjectName("totaladeudado")
+
+
         self.line_2 = QtWidgets.QFrame(self.groupBox_3)
         self.line_2.setGeometry(QtCore.QRect(10, 190, 351, 16))
         self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
+
         self.btnreservar = QtWidgets.QPushButton(self.centralwidget)
         self.btnreservar.setGeometry(QtCore.QRect(650, 520, 93, 28))
         self.btnreservar.setObjectName("btnreservar")
+
+        self.btnAgregarReserva = QtWidgets.QPushButton(self.centralwidget)
+        self.btnAgregarReserva .setGeometry(QtCore.QRect(450, 520, 93, 28))
+        self.btnAgregarReserva .setObjectName("btnAgregarReserva")
+        self.btnAgregarReserva.setText("Agregar")
+
+
         self.btnregresar = QtWidgets.QPushButton(self.centralwidget)
         self.btnregresar.setGeometry(QtCore.QRect(30, 520, 93, 28))
         self.btnregresar.setObjectName("btnregresar")
@@ -218,196 +243,39 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        self.btnabonar.clicked.connect(self.check_radio)
-        
+        #
+
+        self.precioSitio = QtWidgets.QLabel(self.centralwidget)
+        self.precioSitio.setGeometry(QtCore.QRect(423, 72, 300, 30))
+
+        self.nombreSitio = QtWidgets.QLabel(self.centralwidget)
+        self.nombreSitio.setGeometry(QtCore.QRect(420, 34, 300, 30))
+
+        self.input_abono = QtWidgets.QLineEdit(self.groupBox)
+        self.input_abono.setGeometry(QtCore.QRect(20, 400, 150, 28))
+        self.input_abono.setObjectName("input_abono")
+        self.input_abono.setPlaceholderText("Monto a abonar")
+        self.input_abono.setVisible(False)  # Ocultar inicialmente
+
+        self.radioButton.toggled.connect(self.mostrar_campo_abono)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-    def check_radio(self):
-        try:
-            if self.radioButton.isChecked():
-                print('Usted ha realizado el abono')
-            else:
-                print('No seleccionó la opción abonar')
-        except Exception as e:
-            print(f"Error en check_radio: {e}")
 
-
-
-
-    def guardar_datos(self):
-    # Obtener los datos de los campos
-        nombre = self.intronom.text()  # Usamos .text() para obtener el valor del campo
-        cedula = self.introcedula.text()  # Lo mismo aquí
-        telefono = self.intrnumtelefono.text()  
-        sexo = self.escsexo.currentText()  # Usamos currentText() para obtener el valor seleccionado
-        edad = self.introedad.text()
-        pais = self.intropais.text()
-        Email = self.intromail.text()
-        CantidadPersonas = self.cantperso.value()  # Para QSpinBox usamos .value() en lugar de .text()
-
-    # Validación de los campos
-        error = False
-
-    # Validación de los campos
-        if len(nombre) == 0:
-            self.introduzcanom.setText("*Ingrese su nombre*")
-            self.introduzcanom.setStyleSheet("color: red")
-            error = True
-        if len(cedula) == 0:
-            self.introduzcacedula.setText("*Ingrese su cédula*")
-            self.introduzcacedula.setStyleSheet("color: red")
-            error = True
-        if len(telefono) == 0:
-            self.introduzcatelefono.setText("*Ingrese su teléfono*")
-            self.introduzcatelefono.setStyleSheet("color: red")
-            error = True
-        if len(edad) == 0:
-            self.introduzcaedad.setText("*Ingrese su edad*")
-            self.introduzcaedad.setStyleSheet("color: red")
-            error = True
-        if len(pais) == 0:
-            self.introduzcapais.setText("*Ingrese su país*")
-            self.introduzcapais.setStyleSheet("color: red")
-            error = True
-        if len(Email) == 0:
-            self.introduzcaEmail.setText("*Ingrese su email*")
-            self.introduzcaEmail.setStyleSheet("color: red")
-            error = True
-        if CantidadPersonas == 0:
-            self.introduzcacantperson.setText("*Ingrese personas*")
-            self.introduzcacantperson.setStyleSheet("color: red")
-            
-            error = True
-
-        if error:
-            print("Hay campos que no se han llenado correctamente.")
+       
+    def mostrar_campo_abono(self, checked):
+        if checked:  # Si el radio button está activado
+            self.input_abono.setVisible(True)  # Mostrar el campo de abono
         else:
-        # Aquí puedes guardar los datos o realizar otras acciones
-            print("Datos guardados correctamente")
+            self.input_abono.setVisible(False)  # Ocultarlo si no está activado
 
-
-
-        nomfac = f"\nNombre: {nombre}"
-        cedufac= f"\nCédula: {cedula}"
-        telefac= f"\nTeléfono: {telefono}"
-        sexfac= f"\nsexo: {sexo}"
-        edadfac= f"\nedad: {edad}"
-        paisfac= f"\npais: {pais}"
-        mailfac=f"\nEmail: {Email}"
-        cantpersonfac=f"\ncantperson: {CantidadPersonas}"
-
-        self.nomfac.setText(f"Nombre: {nombre}")
-        self.cedulafac.setText(f"Cédula: {cedula}")
-        self.telefonofac.setText(f"Teléfono: {telefono}")
-        self.sexofac.setText(f"Sexo: {sexo}")
-        self.edadfac.setText(f"Edad: {edad}")
-        self.paisfac.setText(f"País: {pais}")
-        self.mailfac.setText(f"E-mail: {Email}")
-        self.cantpersonfac.setText(f"Cantidad de personas: {CantidadPersonas}")
-
-    # Limpiar los campos si es necesario
-        self.intronom.setText("")
-        self.introcedula.setText("")
-        self.intrnumtelefono.setText("")
-        self.introedad.setText("")
-        self.intropais.setText("")
-        self.intromail.setText("")
-    
-   
-    # Conectar los eventos a las funciones al configurar la interfaz
-        self.intronom.textChanged.connect(self.validar_nombre)
-        self.introcedula.textChanged.connect(self.validar_cedula)
-        self.intrnumtelefono.textChanged.connect(self.validar_telefono)
-        self.introedad.textChanged.connect(self.validar_edad)
-        self.intromail.textChanged.connect(self.validar_email)
-        self.intropais.textChanged.connect(self.validar_pais)
-        self.cantperso.valueChanged.connect(self.validar_cantidad_personas)
-
-# Crear las funciones de validación para cada campo
-    def validar_nombre(self):
-        try:
-            nombre = self.intronom.text()
-            if len(nombre) > 0:  # Si el campo no está vacío
-                self.introduzcanom.setText("")
-                self.introduzcanom.setStyleSheet("")
-            else:
-                self.introduzcanom.setText("*Ingrese su nombre*")
-                self.introduzcanom.setStyleSheet("color: red")
-        except Exception as e:
-            print(f"Error en validar_nombre: {e}")
-
-    def validar_cedula(self):
-        try:
-            cedula = self.introcedula.text()
-            if len(cedula) > 0:  # Si el campo no está vacío
-                self.introduzcacedula.setText("")
-                self.introduzcacedula.setStyleSheet("")
-            else:
-                self.introduzcacedula.setText("*Ingrese su cédula*")
-                self.introduzcacedula.setStyleSheet("color: red")
-        except Exception as e:
-            print(f"Error en validar_cedula: {e}")
-
-    def validar_telefono(self):
-        try:
-            telefono = self.intrnumtelefono.text()
-            if len(telefono) > 0:  # Si el campo no está vacío
-                self.introduzcatelefono.setText("")
-                self.introduzcatelefono.setStyleSheet("")
-            else:
-                self.introduzcatelefono.setText("*Ingrese su teléfono*")
-                self.introduzcatelefono.setStyleSheet("color: red")
-        except Exception as e:
-            print(f"Error en validar_telefono: {e}")
-
-    def validar_edad(self):
-        try:
-            edad = self.introedad.text()
-            if len(edad) > 0:  # Si el campo no está vacío
-                self.introduzcaedad.setText("")
-                self.introduzcaedad.setStyleSheet("")
-            else:
-                self.introduzcaedad.setText("*Ingrese su edad*")
-                self.introduzcaedad.setStyleSheet("color: red")
-        except Exception as e:
-            print(f"Error en validar_edad: {e}")
-
-    def validar_email(self):
-        try:
-            email = self.intromail.text()
-            if len(email) > 0:  # Si el campo no está vacío
-                self.introduzcaEmail.setText("")
-                self.introduzcaEmail.setStyleSheet("")
-            else:
-                self.introduzcaEmail.setText("*Ingrese su email*")
-                self.introduzcaEmail.setStyleSheet("color: red")
-        except Exception as e:
-            print(f"Error en validar_email: {e}")
-
-    def validar_pais(self):
-        try:
-            pais = self.intropais.text()
-            if len(pais) > 0:  # Si el campo no está vacío
-                self.introduzcapais.setText("")
-                self.introduzcapais.setStyleSheet("")
-            else:
-                self.introduzcapais.setText("*Ingrese su país*")
-                self.introduzcapais.setStyleSheet("color: red")
-        except Exception as e:
-            print(f"Error en validar_pais: {e}")
-
-    def validar_cantidad_personas(self):
-        try:
-            if self.cantperso.value() > 0:  # Si la cantidad es válida
-                self.introduzcacantperson.setText("")
-                self.introduzcacantperson.setStyleSheet("")
-            else:
-                self.introduzcacantperson.setText("*Ingrese una cantidad válida*")
-                self.introduzcacantperson.setStyleSheet("color: red")
-        except Exception as e:
-            print(f"Error en validar_cantidad_personas: {e}")
 
         
+
+
+
+
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -421,6 +289,7 @@ class Ui_MainWindow(object):
         self.cantidaddepersonas.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600; color:#000000;\">cantidad de personas</span><span style=\" color:#ff0000;\">*</span></p></body></html>"))
         self.cedula.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">cedula</span><span style=\" font-weight:600; color:#ff0000;\">*</span></p></body></html>"))
         self.numtelefono.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">numero de telefono</span><span style=\" font-weight:600; color:#ff0000;\">*</span></p></body></html>"))
+        
         self.prefijostelefonicos.setItemText(0, _translate("MainWindow", "500"))
         self.prefijostelefonicos.setItemText(1, _translate("MainWindow", "501"))
         self.prefijostelefonicos.setItemText(2, _translate("MainWindow", "502"))
@@ -450,6 +319,8 @@ class Ui_MainWindow(object):
         self.prefijostelefonicos.setItemText(26, _translate("MainWindow", "809"))
         self.prefijostelefonicos.setItemText(27, _translate("MainWindow", "829"))
         self.prefijostelefonicos.setItemText(28, _translate("MainWindow", "849"))
+
+
         self.deseaabonar.setText(_translate("MainWindow", "desea abonar?"))
         self.radioButton.setText(_translate("MainWindow", "si"))
         self.btnabonar.setText(_translate("MainWindow", "abonar"))
@@ -470,9 +341,19 @@ class Ui_MainWindow(object):
         self.abono.setText(_translate("MainWindow", "Abono:"))
         self.mailfac.setText(_translate("MainWindow", "E-mail:"))
         self.cantpersonfac.setText(_translate("MainWindow", "Cantidad de Personas:"))
-        self.totaladeudado.setText(_translate("MainWindow", "Total adeudado:"))
+        self.totaladeudado.setText(_translate("MainWindow", "Total :"))
         self.btnreservar.setText(_translate("MainWindow", "reservar"))
         self.btnregresar.setText(_translate("MainWindow", "regresar"))
-        self.btnreservar.clicked.connect(self.guardar_datos)
+        
+
+
+'''if __name__ == "__main__":
+
+    appSwitch = QtWidgets.QApplication(sys.argv)
+    pantalla = QtWidgets.QMainWindow()
+    windowStart = Ui_MainWindow()
+    windowStart.setupUi(pantalla)
+    pantalla.show()
+    sys.exit(appSwitch.exec_())'''
 
 

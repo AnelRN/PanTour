@@ -12,7 +12,7 @@
                     "Actividades acuáticas (kayak, snorkel)",
                     "Transporte terrestre desde la ciudad de Panamá"
                 ],
-                "precio": "$1800.00"
+                "precio": "1800"
             },
             "El Valle de Antón": {
                 "descripcion": "El Valle de Antón es un hermoso pueblo en las montañas situado en el cráter de un volcán extinto. Ubicado en la ladera de la montaña de la Riviera Pacífica, una visita al Valle de Antón es el complemento perfecto para un viaje a la playa. No solo hay mucho que hacer y ver allí, sino que también podrás combatir el calor de las regiones bajas.",
@@ -23,7 +23,7 @@
                     "Impuestos hoteleros",
                     "Transporte terrestre"
                 ],
-                "precio": "$1500.00"
+                "precio": "1500"
             },
             "El Chorro Macho": {
                 "descripcion": "Este es uno de los puntos turísticos más emblemáticos de El Valle de Antón. En él podrás recorrer un hermoso sendero entre selva tropical y puentes colgantes que termina con una espectacular vista del chorro, que cae desde 35 metros de altura. Al final del recorrido puedes disfrutar de un baño en la piscina natural. La caminata entera es alrededor de 45 minutos y es de baja dificultad.",
@@ -33,7 +33,7 @@
                     "Entrada y guía al Chorro Macho",
                     "Senderismo guiado por el área"
                 ],
-                "precio": "$1200.00"
+                "precio": "1200"
             },
             "The Sleeping Indian Girl": {
                 "descripcion": "Este tramo contiene los atractivos más icónicos de El Valle: la piedra pintada, la cima de la India Dormida y el Chorro Las Mozas. Muchos suben hasta la cima de la India Dormida para disfrutar de su impresionante vista, pero se regresan sin saber que puedes alargar tu aventura recorriendo todo el filo subiendo y bajando sus picos hasta llegar al Cerro La Cruz.",
@@ -43,7 +43,7 @@
                     "Caminata guiada a la cima de la India Dormida",
                     "Transporte privado"
                 ],
-                "precio": "$1300.00"
+                "precio": "1300"
             }
         }
     },
@@ -60,7 +60,7 @@
                     "Tour guiado por el parque y sus fortificaciones coloniales",
                     "Transporte terrestre"
                 ],
-                "precio": "$1700.00"
+                "precio": "1700"
             },
             "Gatún Locks": {
                 "descripcion": "Las impresionantes Esclusas de Gatún, a 10 km al sur de Colón, elevan a los barcos que se dirigen al sur 30 m desde las aguas del Caribe hasta el lago Gatún. Su tamaño es alucinante: tres juegos de esclusas dobles se extienden a lo largo de 3 km. En cada una de ellas podría haber cabido el Titanic.",
@@ -70,7 +70,7 @@
                     "Entrada a las esclusas y visita guiada",
                     "Transporte terrestre"
                 ],
-                "precio": "$800.00"
+                "precio": "800"
             },
             "Fuerte de San Lorenzo": {
                 "descripcion": "El Castillo de San Lorenzo El Real de Chagres es una edificación militar que fue construida en diferentes etapas durante la época colonial. Originalmente constaba de una plataforma marina diseñada y construida por el ingeniero militar Bautista Antonelli entre 1595 y 1610, en la punta de un acantilado al nivel del mar.",
@@ -80,7 +80,7 @@
                     "Tour histórico por el fuerte",
                     "Transporte privado"
                 ],
-                "precio": "$1400.00"
+                "precio": "1400"
             },
             "Atlantic Bridge": {
                 "descripcion": "El Puente Atlántico, que cruza el Canal de Panamá cerca de la Ciudad de Colón, en el lado atlántico, tiene una longitud total de 3081 m (10108 pies). El puente atirantado principal tiene un vano principal de 530 m (1738 pies) y proporciona una altura vertical mínima de 75 m (246 pies) sobre el canal.",
@@ -90,7 +90,7 @@
                     "Tour fotográfico del puente y el canal",
                     "Transporte terrestre"
                 ],
-                "precio": "$900.00"
+                "precio": "900"
             }
         }
     },
@@ -107,7 +107,7 @@
                     "Excursiones guiadas por la selva",
                     "Observación de fauna y flora"
                 ],
-                "precio": "$2200.00"
+                "precio": "2200"
             },
             "EcoTour Darién": {
                 "descripcion": "Realizamos diferentes recorridos por la Selva de Darién. Desde recorridos de 2 días hasta recorridos de 14 días. Nuestros recorridos principales incluyen la visita a una aldea indígena Embera, el senderismo a través de la selva primaria y secundaria. Buscamos todo tipo de animales y ofrecemos recorridos especiales para la observación de aves.",
@@ -117,7 +117,7 @@
                     "Caminata guiada por la selva",
                     "Comida típica incluida"
                 ],
-                "precio": "$1800.00"
+                "precio": "1800"
             },
             "Darien Gap Panamá": {
                 "descripcion": "El viaje hacia el Darien supera las expectativas de cualquiera. Una persona guía (te acompaña en caminata por la jungla aventuras) es una fácil guía habitual y ofrece una gran riqueza de conocimientos en Panamá, en general y Darién en particular. Los guías saben sobre todo lo que puedes encontrar (pájaros, insectos, serpientes, árboles y plantas, etc.), junto con la colorida historia del Darién y la gente que vive y viajes por la zona.",
@@ -128,7 +128,7 @@
                     "Transporte 4x4 al punto de partida",
                     "Comidas incluidas"
                 ],
-                "precio": "$2400.00"
+                "precio": "2400"
             },
             "ToursDarien": {
                 "descripcion": "Con ToursDarien puedes hacer una cantidad de cosas impresionantes, como expediciones diurnas y nocturnas en la selvática provincia de Darien, al igual que puedes avistar muchísimas especies de aves, excursiones a reservas naturales del mismo, para disfrutar de su hermosa biodiversidad y ecosistemas, y visitar comunidades indígenas que conviven con la naturaleza.",
@@ -139,7 +139,7 @@
                     "Guía local",
                     "Desayuno y cena"
                 ],
-                "precio": "$1900.00"
+                "precio": "1900"
             }
         }
     },
@@ -155,7 +155,7 @@
                     "Desayuno y cena en restaurantes locales",
                     "Tour guiado por el Casco Viejo y sus monumentos históricos"
                 ],
-                "precio": "$1500.00"
+                "precio": "1500"
             },
             "Biomuseo": {
                 "descripcion": "Una conjunción poderosa entre ciencia y arte, es un museo de historia natural dedicado a Panamá que explora la relación entre su biodiversidad y su cultura. En 8 exhibiciones cuenta la historia del surgimiento del Istmo de Panamá hace 3 millones de años, y de cómo ese surgimiento unió continentes y dividió mares, cambiando el mundo para siempre.",
@@ -165,7 +165,7 @@
                     "Entrada y tour por el Biomuseo",
                     "Transporte terrestre desde el hotel"
                 ],
-                "precio": "$800.00"
+                "precio": "800"
             },
             "Canal de Panamá": {
                 "descripcion": "El Canal de Panamá atraviesa el Istmo de Panamá en su punto más estrecho y utiliza un sistema de esclusas para elevar y bajar los barcos a diferentes niveles. El canal tiene una longitud de 77 km. Conecta los puertos de Balboa, en las costas del Océano Pacífico, y de Cristóbal, en el Mar Caribe.",
@@ -174,7 +174,7 @@
                     "Desayuno incluido",
                     "Tour guiado por el Canal y Miraflores"
                 ],
-                "precio": "$1000.00"
+                "precio": "1000"
             },
             "Parque Natural Metropolitano": {
                 "descripcion": "Este santuario de la naturaleza es considerado el pulmón de la ciudad capital, y es el único bosque tropical ubicado tan cerca de una zona metropolitana, en toda Latinoamérica. A pesar de su cercanía con la ciudad, el parque alberga una gran biodiversidad de flora, varias especies de aves, serpientes, anfibios y mamíferos.",
@@ -184,7 +184,7 @@
                     "Caminata guiada por el parque",
                     "Avistamiento de fauna local"
                 ],
-                "precio": "$1100.00"
+                "precio": "1100"
             }
         }
     },
@@ -201,7 +201,7 @@
                     "Caminatas por la zona",
                     "Transporte terrestre desde la Ciudad de Panamá"
                 ],
-                "precio": "$1200.00"
+                "precio": "1200"
             },
             "Punta Chame": {
                 "descripcion": "Este espacio acogedor en el distrito de Chame es una península que se adentra en el océano pacífico. Envuelto de unos 30 kilómetros de anchas costas de arena impecable, sorprende por su baja concurrencia. Sus dos playas: Norte y Sur, poseen sus propios encantos, ambientes y emotividad.",
@@ -211,7 +211,7 @@
                     "Deportes acuáticos (kitesurf, paddle board)",
                     "Transporte terrestre"
                 ],
-                "precio": "$1300.00"
+                "precio": "1300"
             },
             "Chicá": {
                 "descripcion": "En sus espacios podrás disfrutar tanto de la vista de sus hermosos paisajes y diferentes animales. Por ejemplo, tucanes, gavilanes, ardillas blancas, entre muchos otros. También puedes visitar el Manantial los Algarrobos para disfrutar de un refrescante día alejado del bullicio citadino.",
@@ -220,7 +220,7 @@
                     "Desayuno y cena incluidos",
                     "Tour guiado por la zona para avistar aves y fauna"
                 ],
-                "precio": "$1400.00"
+                "precio": "1400"
             },
             "Los Chorros de Santa clara y Burunga": {
                 "descripcion": "Sus chorros cuentan con dos cascadas alimentadas por el río Paja, que nace en territorio canalero. Los Chorros de Santa Clara y Burunga actualmente son considerados íconos del ecoturismo arraijaneño. Son el sitio predilecto para visitar en familia durante la temporada de sequía para disfrutar de sus frescas aguas cristalinas.",
@@ -229,7 +229,7 @@
                     "Desayuno y almuerzo",
                     "Excursión a las cascadas"
                 ],
-                "precio": "$900.00"
+                "precio": "900"
             }
         }
     },
@@ -246,7 +246,7 @@
                     "Tour cultural por la comarca y visitas a comunidades locales",
                     "Artesanías locales de regalo"
                 ],
-                "precio": "$1300.00"
+                "precio": "1300"
             },
             "Tours de la Comarca": {
                 "descripcion": "Realizamos rutas de varios días, como el Camino de Petroglifos de Guayabal o la vía hacia los grabados antiguos en la Cordillera Central o rutas de ecoturismo por todo el distrito de Munä. Recogemos a los pasajeros en el punto que desee y que acordemos de antemano. Nos adaptamos a la preferencia de nuestros clientes.",
@@ -257,7 +257,7 @@
                     "Guía local experto en la historia ancestral",
                     "Transporte desde la comunidad base"
                 ],
-                "precio": "$1400.00"
+                "precio": "1400"
             },
             "Munä": {
                 "descripcion": "Munä es uno de los distritos con diversidad natural, histórica y cultural, le ofrece experiencias únicas e inigualables, dándoles la oportunidad de tener inolvidables aventuras. Herederos de una cultura ancestral Ngäbe Bugle, con de sitios arqueológicos, hogar de las culturas pre - hispánicas, vestigios que hasta el momento continúan vivos gracias a las costumbres y tradiciones del pueblo Ngäbe y Buglé.",
@@ -268,7 +268,7 @@
                     "Tour cultural por la comunidad Ngäbe",
                     "Taller de artesanías tradicionales"
                 ],
-                "precio": "$1500.00"
+                "precio": "1500"
             },
             "Cultura Ngäbe": {
                 "descripcion": "Las mujeres elaboran, entre su artesanía tradicional, elementos que les sirven para su vestimenta y de sus familias y para la venta. En ocasiones se puede ver infantes transportados en una chácara. También crean, mediante hilos y cuentas de colores, collares y pulseras llamados 'chaquiras', antiguamente usados como adornos para la guerra. Por su parte, los hombres tejen sombreros de fibra vegetal para uso cotidiano o para vender, que son los auténticos 'sombreros panamá'.",
@@ -279,7 +279,7 @@
                     "Visita a mercados locales",
                     "Transporte terrestre"
                 ],
-                "precio": "$1200.00"
+                "precio": "1200"
             }
         }
     },
@@ -294,22 +294,19 @@
                     "Guía local profesional",
                     "Transporte en minivan con aire acondicionado"
                 ],
-                "precio": "$33.62"
-            },
+                "precio": "33"            },
             "Ecoparque de Cerro La Cruz en Boquete": {
                 "descripcion": "Ecoparque Cerro La Cruz se encuentra en un enclave mágico con un sempiterno clima primaveral. Ubicado en el cerro que preside la popular población de Boquete, en la provincia de Chiriquí, Panamá, cerca de Costa Rica.",
                 "servicios_incluidos": [
                     "Entrada al Ecoparque Cerro La Cruz"
                 ],
-                "precio": "$42.24"
-            },
+                "precio": "42"            },
             "Tour Parque Botánico de Schumann": {
                 "descripcion": "El Rainforest Park de Schumann's es el hogar de un pequeño vivero que contiene especies raras de orquídeas, abundante belleza de helechos y flores tropicales, muchos estanques, senderos para caminar y un cañón salvaje. Nuestra ubicación está cerca de la ciudad y, sin embargo, totalmente instalada en un entorno natural exótico y magnífico. En Schumann's Rainforest Park, los huéspedes pueden disfrutar de un ambiente seguro y estimulante para experimentar encuentros cercanos con la vida silvestre de la selva tropical. Los terrenos del parque brindan un hábitat natural para ocelotes, guacamayos, monos, muchas otras aves y loros, colibríes, mariposas, tortugas, peces koi y muchas más criaturas fascinantes. Venga a disfrutar de la biodiversidad única de la selva tropical de Panamá en un entorno accesible y accesible.",
                 "servicios_incluidos": [
                     "Entrada a Schumann’s Resort & Park"
                 ],
-                "precio": "$28.16"
-            },
+                "precio": "28.1"            },
             "Boquete Hotsprings and Waterfall": {
                 "descripcion": "Haremos un circuito atractivo de cañones y cascadas donde podrán apreciar la belleza de la naturaleza en todo su esplendor. La caminata es muy buena, la actividad de natación también ya que son lugares encantadores que te atraparan con su magia.",
                 "servicios_incluidos": [
@@ -318,8 +315,7 @@
                     "Agua",
                     "Snacks"
                 ],
-                "precio": "$60.01"
-            }
+                "precio": "60"            }
         }
     },
     "Bocas del Toro": {
@@ -337,8 +333,7 @@
                     "Transporte al aeropuerto",
                     "Vista al mar con acceso a la playa"
                 ],
-                "precio": "$3,225"
-            },
+                "precio": "3.22"            },
             "Visita turística en lancha motora hasta Starfish Beach, Boca del Drago y la Isla de Aves": {
                 "descripcion": "Pase un día conociendo las islas y las calmadas aguas de la provincia Bocas del Toro de Panamá. Visite Mangrove Point, Starfish Beach (acertadamente denominado así por la abundancia de criaturas del mismo nombre en estas aguas), Boca del Drago y la Isla de las Aves. Se proporcionan tanto el equipo de esnórquel y los chalecos salvavidas, por lo que podrá explorar este paraíso desde el agua, la playa y el barco.",
                 "servicios_incluidos": [
@@ -348,7 +343,7 @@
                     "Enfriador con hielo",
                     "Chalecos salvavidas"
                 ],
-                "precio": "$1,336.12"
+                "precio": "1332"
             },
             "Recorrido de un día por las islas de Bocas del Toro en la Playa Zapatilla": {
                 "descripcion": "Explora los legendarios Cayos Zapatilla, dos islas deshabitadas rodeadas de espectaculares arrecifes de coral y prístinas playas de arena blanca. Pasea por este paraíso, relájate bajo las palmeras que se balancean y, si tienes suerte, observa a las tortugas marinas anidando en la orilla. Después de un delicioso almuerzo en Cayos Coral, la aventura termina en la piscina natural 'Hollywood', famosa por su abundancia de estrellas de mar. ¡No te pierdas esta oportunidad de sumergirte en la belleza de Bocas del Toro!",
@@ -360,8 +355,7 @@
                     "Entrada - Isla Zapatillas",
                     "Entrada - Cayo Coral"
                 ],
-                "precio": "$59.80"
-            },
+                "precio": "59.8"            },
             "Excursión de día completo en lancha motora, flora y fauna y buceo de superficie en Bocas del Toro en Panamá": {
                 "descripcion": "El archipiélago de islas Bocas del Toro de Panamá cubre una gran área. Esta excursión en lancha rápida desde el pueblo de Bocas incluye los lugares más populares en un día. Vea los delfines de Dolphin Bay, practique esnórquel en las islas Zapatilla y explore sus playas de arena blanca, busque perezosos en la Isla de Perezosos y disfrute de un almuerzo de mariscos frescos del Caribe (no incluido).",
                 "servicios_incluidos": [
@@ -370,8 +364,7 @@
                     "Entrada al Parque Nacional",
                     "Entrada - Crawl Cay (Kraal Cay)"
                 ],
-                "precio": "$64.27"
-            }
+                "precio": "64.2"            }
         }
     },
     "Veraguas": {
@@ -388,16 +381,14 @@
                     "Electricidad",
                     "Acceso a la cascada queda a 5 minutos caminando"
                 ],
-                "precio": "$6"
-            },
+                "precio": "6"        },
             "Parque Acuático Italia Guadalupe Panamá": {
                 "descripcion": "Es un parque con 2 toboganes altos y otros más pequeños para los niños. Varias piscinas unas para adultos y otras para niños. Tiene varios paraguas con sus sillas y puedes ordenar bebidas y comidas. Es un lugar para toda la familia o para pasarla con amigos. La mejor combinación es hospedarse en el hotel La Hacienda que está al lado. Esta es una de las mejores atracciones en la Ciudad de Santiago.",
                 "servicios_incluidos": [
                     "Acceso a toboganes y un barco pirata en la piscina.",
                     "Tiene restaurante (es parte del hotel hacienda) los huéspedes tienen descuento."
                 ],
-                "precio": "$10"
-            },
+                "precio": "10"         },
             "Tour de Avistamiento de Ballenas": {
                 "descripcion": "Originalmente una colonia penal, hoy en día el parque es un santuario de flora y fauna, hogar de especies únicas y de ecosistemas de coral que albergan una extraordinaria variedad de vida marina. Es un destino perfecto para quienes disfrutan del buceo, el snorkel, el avistamiento de aves, y la exploración de paisajes naturales.",
                 "servicios_incluidos": [
@@ -406,8 +397,7 @@
                     "Refrigerios y bebidas a bordo.",
                     "Equipo de seguridad y binoculares para mejor observación."
                 ],
-                "precio": "$85"
-            },
+                "precio": "85"         },
             "Morrillo Beach Eco Resort": {
                 "descripcion": "Morrillo Beach Eco Resort tiene jardín, salón de uso común, terraza y restaurante en Morrillo. Hay parking privado gratis y el alojamiento dispone de servicio de traslado de pago para ir o volver del aeropuerto. En el hotel, las habitaciones disponen de un balcón con vistas al río. Las habitaciones del alojamiento tienen baño privado con ducha y artículos de aseo gratuitos, y también incluyen vistas a la montaña. En Morrillo Beach Eco Resort, las habitaciones incluyen ropa de cama y toallas. El desayuno diario ofrece opciones buffet, continentales o vegetarianas.",
                 "servicios_incluidos": [
@@ -419,8 +409,7 @@
                     "Terraza",
                     "Aire acondicionado"
                 ],
-                "precio": "$210"
-            }
+                "precio": "210"          }
         }
     },
     "Herrera": {
@@ -435,8 +424,7 @@
                     "Permiso de Acampada",
                     "Espacio para Fotografía de Paisajes y Observación Astronómica"
                 ],
-                "precio": "$15.00"
-            },
+                "precio": "15.0"            },
             "Xplora Tours": {
                 "descripcion": "Sumérgete en la riqueza cultural y natural de la provincia de Herrera con Xplora Tours. Este paquete ofrece una experiencia integral que combina historia, naturaleza y tradiciones locales. Disfruta de un recorrido por Chitré, conocido como 'La Ciudad que Crece Sola,' explorando sitios históricos, iglesias coloniales y mercados locales. Vive la aventura con una excursión a Isla Iguana, donde podrás relajarte en playas de arena blanca, practicar snorkel en arrecifes de coral y observar la vida silvestre, incluyendo aves marinas y ballenas jorobadas en temporada. Además, visita las impresionantes cascadas locales, ideales para nadar y conectarse con la naturaleza en un entorno tranquilo. Completa tu experiencia con una degustación de la cocina típica herrerana, probando platos como el sancocho y la tradicional chicha de maíz, para conocer la esencia de la gastronomía panameña.",
                 "servicios_incluidos": [
@@ -446,7 +434,7 @@
                     "Almuerzos y Refrigerios",
                     "Entradas a Sitios Turísticos"
                 ],
-                "precio": "$150.00"
+                "precio": "150"
             },
             "Cubitá Tours": {
                 "descripcion": "Explora la cultura, historia y naturaleza de Azuero con Cubitá Tours. Comienza con un recorrido por talleres de artesanos locales y pueblos coloniales, aprendiendo sobre las tradiciones y costumbres de la región. Luego, disfruta de un día en la hermosa Isla Iguana con playas de arena blanca, snorkel en arrecifes de coral y observación de aves. Completa la experiencia con un almuerzo tipo picnic en la playa y una degustación de platos típicos de Azuero.",
@@ -457,7 +445,7 @@
                     "Sillas de Playa",
                     "Agua y Bebidas No Alcohólicas"
                 ],
-                "precio": "$175.00"
+                "precio": "175"
             },
             "Descubre Arena de Herrera: Artesanía y Cultura": {
                 "descripcion": "Este paquete te lleva a la encantadora población de Arena de Herrera, famosa por su rica tradición en artesanías y su vibrante cultura. En este recorrido, podrás visitar la Casa de Artesanías, donde artesanos locales crean reproducciones precolombinas en vidrio y pintura, y explorar el proceso creativo detrás de estas obras. Sumérgete en la vida local mientras aprendes sobre la dedicación de los artesanos a su oficio, además de disfrutar de una feria cultural que resalta el folclore de Arena de Herrera y fomenta la apreciación de sus tradiciones.",
@@ -467,8 +455,7 @@
                     "Materiales para el Taller de Artesanías",
                     "Bebidas y Refrigerios"
                 ],
-                "precio": "$45.00"
-            }
+                "precio": "45.0"            }
         }
     },
     "Los Santos": {
@@ -482,7 +469,7 @@
                     "Guía en directo: inglés, español",
                     "Tablas de surf"
                 ],
-                "precio": "$1,070.88"
+                "precio": "1078"
             },
             "Parque Nacional Cerro Hoya": {
                 "descripcion": "Pertenece a las jurisdicciones de Los Santos y Veraguas. Está a 350 km de la capital de Panamá. Este parque volcánico posee una extensión de 32,579 acres y tiene los tres picos más altos en la península de Azuero, Cerro Hoya, Moya y Soja. Se puede ver desde los boscajes tropicales en las montañas, hasta un clima tropical húmedo a lo largo de la playa. Por ello tiene una gran diversidad de fauna y flora, como árboles, guayacanes, cóndores reyes u manchotas. Los principales ríos nacen en el Parque Nacional Cerro Hoya, que posee fantásticas cascadas y piscinas termales con agua cristalina.",
@@ -491,8 +478,7 @@
                     "Transporte",
                     "Bebidas y Refrigerios"
                 ],
-                "precio": "$30"
-            },
+                "precio": "30"         },
             "Tour de Avistamiento de Ballenas y Snorkel en la Isla de Playa Venao": {
                 "descripcion": "Tu viaje comienza con una conveniente parada en una encantadora panadería local para disfrutar de un delicioso desayuno. A continuación, abordarás una panga techada y navegarás hacia Isla Iguana, un parque marino protegido famoso por sus impresionantes arrecifes de coral y su fascinante vida marina. A medida que nos dirigimos a la isla, tendrás la increíble oportunidad de observar de cerca a las ballenas desde el bote, siendo testigo de estos gentiles gigantes en su hábitat natural.",
                 "servicios_incluidos": [
@@ -500,8 +486,7 @@
                     "Transporte terrestre y marítimo",
                     "Comida ligera: frutas, refrescos"
                 ],
-                "precio": "$84.33"
-            },
+                "precio": "84.3"            },
             "Pedasi Ocean Properties": {
                 "descripcion": "Hotel a orillas del agua con servicio de recepción las 24 horas y alberca al aire libre, en Playa Arenal.",
                 "servicios_incluidos": [
@@ -512,8 +497,7 @@
                     "Servicio de limpieza",
                     "Recepción 24 h"
                 ],
-                "precio": "$184"
-            }
+                "precio": "184"          }
         }
     },
     "Emberá-Wounaan": {
@@ -529,8 +513,7 @@
                     "Almuerzo",
                     "Tour guiado"
                 ],
-                "precio": "$98"
-            },
+                "precio": "98"         },
             "Tour Embera Puru Biakuru": {
                 "descripcion": "La Comunidad Emberá Parará Purú, una población indígena que vive apostada a orillas del Río Chagres y del Lago Alajuela y en donde ellos se rigen por sus propias leyes, con un jefe supremo. Esta región es visitada por turistas que buscan artesanías como la flauta de bambú, chaquiras, maracas, collares y pulseras, productos fabricados por cada familia.",
                 "servicios_incluidos": [
@@ -542,8 +525,7 @@
                     "Presentación artística",
                     "Visita a cascada"
                 ],
-                "precio": "$85.00"
-            },
+                "precio": "85.0"            },
             "Tour Embera Wouman": {
                 "descripcion": "Sumérgete en la cultura de las comunidades Emberá y Wounaan en un tour que te permitirá conocer sus tradiciones, artesanía, música y danzas en un entorno natural. Experimenta un viaje en canoa por ríos locales y disfruta de la hospitalidad de la comunidad, incluyendo una degustación de la gastronomía típica y una caminata guiada por la selva tropical.",
                 "servicios_incluidos": [
@@ -553,8 +535,7 @@
                     "Bebida (no alcohólicas)",
                     "Recorrido recreativo en la comarca"
                 ],
-                "precio": "$95.00"
-            },
+                "precio": "95.0"            },
             "Embera Quera": {
                 "descripcion": "Descubre la rica cultura de la comunidad Emberá Quera, establecida en 2007 a orillas del lago Gatún, en Colón, Panamá. Esta comunidad ofrece una inmersión en sus tradiciones, historia y entorno natural único, incluyendo caminatas en la selva, cascadas, cenas tradicionales y talleres de artesanía.",
                 "servicios_incluidos": [
@@ -564,8 +545,7 @@
                     "Cena tradicional emberá y presentación cultural",
                     "Taller de elaboración de canastos y máscaras tradicionales"
                 ],
-                "precio": "$110"
-            }
+                "precio": "110"          }
         }
     },
     "Guna Yala": {
@@ -583,8 +563,7 @@
                     "Observación de estrellas con historias y leyendas guna.",
                     "1 noche"
                 ],
-                "precio": "$180"
-            },
+                "precio": "180"          },
             "Isla San Blas": {
                 "descripcion": "La isla San Blas es famosa por sus aguas cristalinas y arenas blancas, un verdadero paraíso tropical en el caribe. Este destino ofrece una experiencia relajante y cultural en un entorno de belleza natural incomparable. Los visitantes pueden conocer más sobre la cultura guna a través de talleres de artesanías tradicionales y degustaciones de platos típicos.",
                 "servicios_incluidos": [
@@ -601,8 +580,7 @@
                     "Entrada/admisión - Islas San Blas",
                     "Entrada/admisión - isla Perro"
                 ],
-                "precio": "$149.0"
-            },
+                "precio": "149"            },
             "Día de Relax en Isla Chichime": {
                 "descripcion": "Si buscas un día de relajación total en una de las playas más hermosas y tranquilas del archipiélago, esta es la opción ideal. La Isla Chichime es conocida por sus playas de arena blanca y aguas cristalinas, perfectas para nadar, hacer snorkel o simplemente disfrutar del sol y la brisa caribeña en una hamaca.",
                 "servicios_incluidos": [
@@ -612,8 +590,7 @@
                     "Acceso a hamacas y sombrillas.",
                     "Tiempo libre para explorar la isla y relajarte."
                 ],
-                "precio": "$100"
-            },
+                "precio": "100"          },
             "Isla Aroma": {
                 "descripcion": "Si bien muchas personas visitan las Islas San Blas en un viaje de un día apresurado, quedarse más tiempo le permite realmente relajarse y experimentar su belleza natural y cultural. Disfrute de una estancia de dos noches en bungalows en un resort junto a la playa. Los traslados por tierra y en barco y todas las comidas están incluidas, así como algunas actividades.",
                 "servicios_incluidos": [
@@ -625,7 +602,7 @@
                     "Cabaña privada con baño privado y piso de madera.",
                     "Tour para visitar la isla perro chico barco hundido y piscina natural"
                 ],
-                "precio": "$282.25"
+                "precio": "282"
             }
         }
     }
